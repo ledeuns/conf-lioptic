@@ -1,2 +1,2 @@
 # conf-lioptic
-Generate router configuration
+Generates router configuration
