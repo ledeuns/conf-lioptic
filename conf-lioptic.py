@@ -5,8 +5,8 @@ import yaml
 import jinja2
 
 def ComputeIntercoPfx(svlan):
-  """ Generate a 100.64/10 prefix based on the svlan-id
-       Output if svlan=1001 : 100.67.233
+  """ Generates a 100.64/10 prefix based on the svlan-id
+      Output if svlan=1001 : 100.67.233
   """
   byte1 = 100
   byte2 = 64 + int(svlan/256)
