@@ -1,0 +1,27 @@
+#
+# CCR1009-8G-1S Template V1.0
+#
+# Generated on {{datetime}}
+# for {{name}} 
+#
+/interface vlan
+add interface=sfp1 l2mtu=1576 name=svlan{{svlan}} use-service-tag=yes vlan-id={{svlan}}
+/ip neighbor discovery
+set svlan{{svlan}} discover=no
+/ip address
+add address={{interco4_prefix}}.2/30 interface=svlan{{svlan}}
+add address=198.51.100.2/30 interface=ether1
+/ip route
+add distance=1 gateway={{interco4_prefix}}.1
+add distance=1 dst-address={{customer4_subnet}} gateway=198.51.100.1
+/ipv6 address
+add address=2001:db8:ffff::{{svlan}}:ff02/126 advertise=no interface=svlan{{svlan}}
+add address=2001:db8:ffff::{{svlan}}:1/126 advertise=no interface=ether1
+/ipv6 nd
+set [ find default=yes ] hop-limit=64
+/ipv6 route
+add distance=1 gateway=2001:db8:ffff::{{svlan}}:ff01
+add distance=1 dst-address={{customer6_subnet}} gateway=2001:db8:ffff::{{svlan}}:2
+/system identity
+set name={{name}}
+# END
