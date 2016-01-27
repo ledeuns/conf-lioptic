@@ -14,9 +14,9 @@ def ComputeIntercoPfx(svlan):
   return str(byte1)+"."+str(byte2)+"."+str(byte3)
   
 def PrintConfig(genlist):
-  templateLoader = jinja2.FileSystemLoader(searchpath="/")
+  templateLoader = jinja2.FileSystemLoader(searchpath=os.getcwd())
   templateEnv = jinja2.Environment(loader=templateLoader)
-  TEMPLATE_FILE = os.getcwd()+"/conf-lioptic.jinja"
+  TEMPLATE_FILE = "conf-lioptic.jinja"
   template = templateEnv.get_template(TEMPLATE_FILE)
   templateVars = {}
   for v in genlist:
