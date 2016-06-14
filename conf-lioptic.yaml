@@ -1,5 +1,5 @@
 rt-customer-01:
  - name: rt-customer-01
  - svlan: 2016
- - customer4_subnet: 192.0.2.0/29
- - customer6_subnet: 2001:db8:2016::/48
+ - customer4_subnet: ["192.0.2.0/29", "192.0.2.254/32"]
+ - customer6_subnet: ["2001:db8:2016::/48", "2001:db8:2017::/48"]

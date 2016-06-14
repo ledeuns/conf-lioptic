@@ -13,7 +13,9 @@ add address={{interco4_prefix}}.2/30 interface=svlan{{svlan}}
 add address=198.51.100.2/30 interface=ether1
 /ip route
 add distance=1 gateway={{interco4_prefix}}.1
-add distance=1 dst-address={{customer4_subnet}} gateway=198.51.100.1
+{% for pfx4 in customer4_subnet %}
+add distance=1 dst-address={{pfx4}} gateway=198.51.100.1
+{% endfor %}
 /ipv6 address
 add address=2001:db8:ffff::{{svlan}}:ff02/126 advertise=no interface=svlan{{svlan}}
 add address=2001:db8:ffff::{{svlan}}:1/126 advertise=no interface=ether1
@@ -21,7 +23,9 @@ add address=2001:db8:ffff::{{svlan}}:1/126 advertise=no interface=ether1
 set [ find default=yes ] hop-limit=64
 /ipv6 route
 add distance=1 gateway=2001:db8:ffff::{{svlan}}:ff01
-add distance=1 dst-address={{customer6_subnet}} gateway=2001:db8:ffff::{{svlan}}:2
+{% for pfx6 in customer6_subnet %}
+add distance=1 dst-address={{pfx6}} gateway=2001:db8:ffff::{{svlan}}:2
+{% endfor %}
 /system identity
 set name={{name}}
 # END
